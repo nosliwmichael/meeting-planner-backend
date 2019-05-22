@@ -17,11 +17,12 @@
   	<hibernate.version>5.1.2.Final</hibernate.version>
   	<mysql.version>8.0.16</mysql.version>
   	<jackson.version>2.9.8</jackson.version>
+  	<mockito.version>2.27.0</mockito.version>
   </properties>
   
   <dependencies>
   	
-    <!-- JavaX -->
+    <!-- JAVAX -->
     <dependency>
     	<groupId>javax.servlet</groupId>
     	<artifactId>javax.servlet-api</artifactId>
@@ -29,7 +30,7 @@
     	<scope>provided</scope>
     </dependency>
     
-  	<!-- Spring -->
+  	<!-- SPRING -->
     <dependency>
     	<groupId>org.springframework</groupId>
     	<artifactId>spring-orm</artifactId>
@@ -42,26 +43,35 @@
     	<version>${spring.version}</version>
     </dependency>
     
-    <!-- Hibernate -->
+    <!-- HIBERNATE -->
     <dependency>
     	<groupId>org.hibernate</groupId>
     	<artifactId>hibernate-core</artifactId>
     	<version>${hibernate.version}</version>
     </dependency>
     
-    <!-- MySQL -->
+    <!-- MYSQL -->
 	<dependency>
 	    <groupId>mysql</groupId>
 	    <artifactId>mysql-connector-java</artifactId>
 	    <version>${mysql.version}</version>
 	</dependency>
 	 
-	<!-- Jackson -->    
+	<!-- JACKSON -->    
     <dependency>
 	    <groupId>com.fasterxml.jackson.datatype</groupId>
 	    <artifactId>jackson-datatype-jsr310</artifactId>
 	    <version>${jackson.version}</version>
 	</dependency>
+	
+	<!-- MOCKITO -->
+	<dependency>
+	    <groupId>org.mockito</groupId>
+	    <artifactId>mockito-core</artifactId>
+	    <version>${mockito.version}</version>
+	    <scope>test</scope>
+	</dependency>
+
   	
   </dependencies>
   
