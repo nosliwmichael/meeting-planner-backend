@@ -10,7 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.meeting.modelView.UserView;
+import com.meeting.viewmodel.UserView;
 
 @Entity
 @Table(name="user") // Change table name

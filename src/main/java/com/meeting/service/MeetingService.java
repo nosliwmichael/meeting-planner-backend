@@ -2,7 +2,7 @@ package com.meeting.service;
 
 import java.util.List;
 
-import com.meeting.modelView.MeetingView;
+import com.meeting.viewmodel.MeetingView;
 
 public interface MeetingService {
 	

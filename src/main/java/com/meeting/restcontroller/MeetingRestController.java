@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.meeting.modelView.MeetingView;
 import com.meeting.service.MeetingService;
+import com.meeting.viewmodel.MeetingView;
 
 @RestController
 @RequestMapping(value="/meeting")

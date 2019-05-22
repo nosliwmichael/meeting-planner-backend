@@ -1,4 +1,4 @@
-package com.meeting.modelView;
+package com.meeting.viewmodel;
 
 import java.util.Set;
 

@@ -3,7 +3,7 @@ package com.meeting.service;
 import java.util.List;
 
 import com.meeting.model.Login;
-import com.meeting.modelView.UserView;
+import com.meeting.viewmodel.UserView;
 
 public interface UserService {
 

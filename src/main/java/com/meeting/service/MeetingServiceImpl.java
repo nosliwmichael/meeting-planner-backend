@@ -10,8 +10,8 @@ import org.springframework.transaction.annotation.Transactional;
 import com.meeting.dao.MeetingDao;
 import com.meeting.model.Meeting;
 import com.meeting.model.User;
-import com.meeting.modelView.UserView;
-import com.meeting.modelView.MeetingView;
+import com.meeting.viewmodel.MeetingView;
+import com.meeting.viewmodel.UserView;
 
 @Service
 @Transactional

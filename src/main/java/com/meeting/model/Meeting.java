@@ -11,7 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import com.meeting.modelView.MeetingView;
+import com.meeting.viewmodel.MeetingView;
 
 
 @Entity

@@ -13,8 +13,8 @@ import com.meeting.dao.UserDao;
 import com.meeting.model.Login;
 import com.meeting.model.Meeting;
 import com.meeting.model.User;
-import com.meeting.modelView.MeetingView;
-import com.meeting.modelView.UserView;
+import com.meeting.viewmodel.MeetingView;
+import com.meeting.viewmodel.UserView;
 
 @Service
 @Transactional
