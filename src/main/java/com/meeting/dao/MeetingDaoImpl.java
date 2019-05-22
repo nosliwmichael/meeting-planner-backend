@@ -38,9 +38,9 @@ public class MeetingDaoImpl implements MeetingDao {
 	@Override
 	public boolean deleteById(Long id) {
 		
-		String hql = "delete from meeting where meeting_id= :id";
+		String hql = "delete Meeting where meeting_id= :id";
 		Query query = sessionFactory.getCurrentSession().createQuery(hql);
-		query.setLong("id", id);
+		query.setParameter("id", id);
 		return (query.executeUpdate() > 0);
 	}
 

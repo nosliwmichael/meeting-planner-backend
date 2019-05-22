@@ -36,9 +36,9 @@ public class UserDaoImpl implements UserDao {
 	@Override
 	public boolean deleteById(Long id) {
 		
-		String hql = "delete from user where user_id= :id";
+		String hql = "delete User where user_id= :id";
 		Query query = sessionFactory.getCurrentSession().createQuery(hql);
-		query.setLong("id",  id);
+		query.setParameter("id", id);
 		return (query.executeUpdate() > 0);
 		
 	}

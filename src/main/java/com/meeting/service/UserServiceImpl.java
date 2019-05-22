@@ -1,6 +1,7 @@
 package com.meeting.service;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -28,7 +29,7 @@ public class UserServiceImpl implements UserService {
 		
 		// Convert from View Model to Entity Model
 		User user = convertUser(userView);
-		
+
 		// Create new user
 		User newUser = dao.createUser(user);
 		
@@ -110,14 +111,22 @@ public class UserServiceImpl implements UserService {
 	
 	// Convert collection type Meeting to MeetingView
 	private Set<MeetingView> convertMeetings(Set<Meeting> meetings) {
-				
-		return meetings.stream().map(MeetingView::new).collect(Collectors.toSet());
+		
+		if (meetings == null) {
+			return new HashSet<MeetingView>();
+		} else {
+			return meetings.stream().map(MeetingView::new).collect(Collectors.toSet());
+		}
 		
 	}
 	// Convert collection type MeetingView to Meeting
 	private Set<Meeting> convertMeetingViews(Set<MeetingView> meetingViews) {
 		
-		return meetingViews.stream().map(Meeting::new).collect(Collectors.toSet());
+		if (meetingViews == null) {
+			return new HashSet<Meeting>();
+		} else {
+			return meetingViews.stream().map(Meeting::new).collect(Collectors.toSet());
+		}
 		
 	}
 }

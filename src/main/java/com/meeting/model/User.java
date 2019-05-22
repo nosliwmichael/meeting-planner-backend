@@ -30,9 +30,12 @@ public class User {
 	
 	@Column(name = "email", nullable = false)
 	private String email;
+	
+	@Column(name = "password", nullable = false)
+	private String password;
 
 
-	@OneToMany(mappedBy="hostUser", orphanRemoval=true)
+	@OneToMany(mappedBy="hostUser")
 	private Set<Meeting> meetings;
 
 	// Constructor
@@ -43,6 +46,7 @@ public class User {
 		this.firstName = userView.getFirstName();
 		this.lastName = userView.getLastName();
 		this.email = userView.getEmail();
+		this.password = userView.getPassword();
 		
 	}
 	
@@ -73,6 +77,13 @@ public class User {
 	}
 	public void setEmail(String email) {
 		this.email = email;
+	}
+	
+	public String getPassword() {
+		return this.password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
 	}
 	
 	public Set<Meeting> getMeetings() {
