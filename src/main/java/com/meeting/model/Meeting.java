@@ -45,6 +45,26 @@ public class Meeting {
 		this.time = meetingView.getTime();
 		this.location = meetingView.getLocation();
 	}
+	public Meeting(MeetingView meetingView, User user) {
+		this.meetingId = meetingView.getId();
+		this.subject = meetingView.getSubject();
+		this.time = meetingView.getTime();
+		this.location = meetingView.getLocation();
+		this.hostUser = user;
+	}
+	public Meeting(Long id, String subject, Timestamp time, String location) {
+		this.meetingId = id;
+		this.subject = subject;
+		this.time = time;
+		this.location = location;
+	}
+	public Meeting(Long id, String subject, Timestamp time, String location, User user) {
+		this.meetingId = id;
+		this.subject = subject;
+		this.time = time;
+		this.location = location;
+		this.hostUser = user;
+	}
 	
 	// Getters & Setters
 	public Long getId() {
@@ -82,4 +102,12 @@ public class Meeting {
 		this.hostUser = user;
 	}
 	
+	@Override
+	public String toString() {
+		return "ID: " + this.meetingId + 
+				", Subject: " + this.subject + 
+				", Time: " + this.time + 
+				", Location: " + this.location + 
+				" | " + this.hostUser.toString();
+	}
 }

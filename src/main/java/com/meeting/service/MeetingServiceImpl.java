@@ -65,10 +65,11 @@ public class MeetingServiceImpl implements MeetingService {
 		// Find meeting
 		Meeting meeting = dao.findById(id);
 		
-		// Convert object to be sent back to client
-		MeetingView meetingView = convertMeeting(meeting);
-		
-		return meetingView;
+		if (meeting == null) {
+			return null;
+		} else {
+			return convertMeeting(meeting);
+		}
 
 	}
 	

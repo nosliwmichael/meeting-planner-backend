@@ -49,6 +49,21 @@ public class User {
 		this.password = userView.getPassword();
 		
 	}
+	public User(Long id, String firstName, String lastName, String email, String password) {
+		this.userId = id;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+		this.password = password;
+	}
+	public User(Long id, String firstName, String lastName, String email, String password, Set<Meeting> meetings) {
+		this.userId = id;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+		this.password = password;
+		this.meetings = meetings;
+	}
 	
 	// Getters & Setters
 	public Long getId() {
@@ -91,6 +106,15 @@ public class User {
 	}
 	public void setMeetings(Set<Meeting> meetings) {
 		this.meetings = meetings;
+	}
+	
+	@Override
+	public String toString() {
+		return "ID: " + this.userId +
+				", First Name: " + this.firstName + 
+				", Last Name: " + this.lastName + 
+				", Email: " + this.email + 
+				", Password: " + this.password;
 	}
 	
 }
