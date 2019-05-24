@@ -6,9 +6,9 @@ import com.meeting.viewmodel.MeetingView;
 
 public interface MeetingService {
 	
-	MeetingView createMeeting(MeetingView meeting);
+	MeetingView create(MeetingView meeting);
 	
-	MeetingView updateMeeting(MeetingView meeting);
+	MeetingView update(MeetingView meeting);
 	
 	boolean deleteById(Long id);
 	
@@ -16,6 +16,6 @@ public interface MeetingService {
 	
 	List<MeetingView> findByHost(Long id);
 	
-	List<MeetingView> findAllMeetings();
+	List<MeetingView> findAll();
 	
 }

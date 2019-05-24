@@ -18,7 +18,7 @@ public class UserDaoImpl implements UserDao {
 	private SessionFactory sessionFactory;
 	
 	@Override
-	public User createUser(User user) {
+	public User create(User user) {
 		
 		sessionFactory.getCurrentSession().save(user);
 		return user;
@@ -26,7 +26,7 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	@Override
-	public User updateUser(User user) {
+	public User update(User user) {
 		
 		sessionFactory.getCurrentSession().update(user);
 		return user;
@@ -34,12 +34,12 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	@Override
-	public boolean deleteById(Long id) {
+	public int deleteById(Long id) {
 		
 		String hql = "delete User where user_id= :id";
 		Query query = sessionFactory.getCurrentSession().createQuery(hql);
 		query.setParameter("id", id);
-		return (query.executeUpdate() > 0);
+		return query.executeUpdate();
 		
 	}
 
@@ -51,10 +51,20 @@ public class UserDaoImpl implements UserDao {
 		return (User) criteria.uniqueResult();
 		
 	}
+	
+	@Override
+	public User findByLogin(String username, String password) {
+		
+		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(User.class);
+		criteria.add(Restrictions.eq("email", username));
+		criteria.add(Restrictions.eq("password", password));
+		return (User) criteria.uniqueResult();
+		
+	}
 
 	@Override
 	@SuppressWarnings("unchecked")
-	public List<User> findAllUsers() {
+	public List<User> findAll() {
 
 		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(User.class);
 		return (List<User>) criteria.list();

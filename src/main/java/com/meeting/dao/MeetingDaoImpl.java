@@ -19,7 +19,7 @@ public class MeetingDaoImpl implements MeetingDao {
 	private SessionFactory sessionFactory;
 	
 	@Override
-	public Meeting createMeeting(Meeting meeting) {
+	public Meeting create(Meeting meeting) {
 		
 		sessionFactory.getCurrentSession().save(meeting);
 		
@@ -28,7 +28,7 @@ public class MeetingDaoImpl implements MeetingDao {
 	}
 
 	@Override
-	public Meeting updateMeeting(Meeting meeting) {
+	public Meeting update(Meeting meeting) {
 		
 		sessionFactory.getCurrentSession().update(meeting);
 		return meeting;
@@ -36,12 +36,12 @@ public class MeetingDaoImpl implements MeetingDao {
 	}
 
 	@Override
-	public boolean deleteById(Long id) {
+	public int deleteById(Long id) {
 		
 		String hql = "delete Meeting where meeting_id= :id";
 		Query query = sessionFactory.getCurrentSession().createQuery(hql);
 		query.setParameter("id", id);
-		return (query.executeUpdate() > 0);
+		return query.executeUpdate();
 	}
 
 	@Override
@@ -66,7 +66,7 @@ public class MeetingDaoImpl implements MeetingDao {
 
 	@Override
 	@SuppressWarnings("unchecked")
-	public List<Meeting> findAllMeetings() {
+	public List<Meeting> findAll() {
 		
 		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Meeting.class);
 		criteria.addOrder(Order.asc("time"));

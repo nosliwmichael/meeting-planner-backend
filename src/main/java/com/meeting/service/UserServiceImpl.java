@@ -25,40 +25,53 @@ public class UserServiceImpl implements UserService {
 	private UserDao dao;
 	
 	@Override
-	public UserView createUser(UserView userView) {
+	public UserView create(UserView userView) {
 		
 		// Convert from View Model to Entity Model
 		User user = convertUser(userView);
 
 		// Create new user
-		User newUser = dao.createUser(user);
+		User newUser = dao.create(user);
 		
-		// Convert from Entity Model to View Model
-		UserView newUserView = convertUser(newUser);
-		
-		return newUserView;
+		if (newUser == null) {
+			
+			return null;
+			
+		} else {
+			
+			// Convert from Entity Model to View Model
+			return convertUser(newUser);
+			
+		}
 		
 	}
 
 	@Override
-	public UserView updateUser(UserView userView) {
+	public UserView update(UserView userView) {
 
 		// Convert from View Model to Entity Model
 		User user = convertUser(userView);
 		
 		// Update user
-		User updatedUser = dao.updateUser(user);
-
-		// Convert from Entity Model to View Model
-		UserView updatedUserView = convertUser(updatedUser);
+		User updatedUser = dao.update(user);
 		
-		return updatedUserView;
+		if (updatedUser == null) {
+			
+			return null;
+			
+		} else {
+			
+			// Convert from Entity Model to View Model
+			return convertUser(updatedUser);
+			
+		}
+		
 	}
 
 	@Override
 	public boolean deleteById(Long id) {
 		
-		return dao.deleteById(id);
+		return (dao.deleteById(id) > 0);
 		
 	}
 
@@ -67,46 +80,79 @@ public class UserServiceImpl implements UserService {
 		
 		// Find user
 		User user = dao.findById(id);
-
-		// Convert from Entity Model to View Model
-		UserView userView = convertUser(user);
 		
-		return userView;
-	}
-
-	@Override
-	public List<UserView> findAllUsers() {
-		
-		List<User> users = dao.findAllUsers();
-		List<UserView> userViews = new ArrayList<>();
-		
-		for (User user: users) {
-			UserView userView = convertUser(user);
-			userViews.add(userView);
+		if (user == null) {
+			
+			return null;
+			
+		} else {
+			
+			// Convert from Entity Model to View Model
+			return convertUser(user);
+			
 		}
 		
-		return userViews;
+	}
+
+	@Override
+	public List<UserView> findAll() {
+		
+		List<User> users = dao.findAll();
+		
+		if (users == null) {
+			
+			return null;
+			
+		} else {
+
+			List<UserView> userViews = new ArrayList<>();
+			
+			for (User user: users) {
+				UserView userView = convertUser(user);
+				userViews.add(userView);
+			}
+			
+			return users.stream().map(UserView::new).collect(Collectors.toList());
+			
+		}
 		
 	}
 
 	@Override
-	public boolean loginUser(Login account) {
+	public boolean login(Login account) {
+		
+		User user = dao.findByLogin(account.getEmail(), account.getPassword());
+		
 		// TODO Implement login user
-		return true;
+		if (user == null) {
+			
+			return false;
+			
+		} else {
+			
+			return true;
+			
+		}
+		
 	}
 
 	
 	// Convert from View Model to Entity Model
 	private User convertUser(UserView userView) {
+		
 		User user = new User(userView);
 		user.setMeetings( convertMeetingViews( userView.getMeetings() ) );
 		return user;
+		
 	}
 	// Convert from Entity Model to View Model
 	private UserView convertUser(User user) {
+		
 		UserView userView = new UserView(user);
 		userView.setMeetings( convertMeetings( user.getMeetings() ) );
+		userView.setPassword(null);
 		return userView;
+		
 	}
 	
 	// Convert collection type Meeting to MeetingView

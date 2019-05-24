@@ -7,7 +7,7 @@ import com.meeting.model.Meeting;
 public class MeetingView {
 
 	// Properties
-	private Long id;
+	private Long meeting_id;
 	private String subject;
 	private Timestamp time;
 	private String location;
@@ -15,26 +15,26 @@ public class MeetingView {
 		
 	public MeetingView() {}
 	public MeetingView(Meeting meeting) {
-		this.id = meeting.getId();
+		this.meeting_id = meeting.getId();
 		this.subject = meeting.getSubject();
 		this.time = meeting.getTime();
 		this.location = meeting.getLocation();
 	}
 	public MeetingView(Meeting meeting, UserView user) {
-		this.id = meeting.getId();
+		this.meeting_id = meeting.getId();
 		this.subject = meeting.getSubject();
 		this.time = meeting.getTime();
 		this.location = meeting.getLocation();
 		this.hostUser = user;
 	}
 	public MeetingView(Long id, String subject, Timestamp time, String location) {
-		this.id = id;
+		this.meeting_id = id;
 		this.subject = subject;
 		this.time = time;
 		this.location = location;
 	}
 	public MeetingView(Long id, String subject, Timestamp time, String location, UserView hostUser) {
-		this.id = id;
+		this.meeting_id = id;
 		this.subject = subject;
 		this.time = time;
 		this.location = location;
@@ -43,10 +43,10 @@ public class MeetingView {
 	
 	// Getters & Setters
 	public Long getId() {
-		return this.id;
+		return this.meeting_id;
 	}
 	public void setId(Long id) {
-		this.id = id;
+		this.meeting_id = id;
 	}
 	
 	public String getSubject() {
@@ -79,10 +79,11 @@ public class MeetingView {
 	
 	@Override
 	public String toString() {
-		return "ID: " + this.id + 
+		return "ID: " + this.meeting_id + 
 				", Subject: " + this.subject + 
 				", Time: " + this.time + 
 				", Location: " + this.location + 
 				" | " + this.hostUser.toString();
 	}
+	
 }

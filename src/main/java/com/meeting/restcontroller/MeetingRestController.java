@@ -26,7 +26,7 @@ public class MeetingRestController {
 	@RequestMapping(value="/", method=RequestMethod.POST, consumes=MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<MeetingView> createMeeting(@RequestBody MeetingView meeting) {
 		
-		MeetingView newMeeting = meetingService.createMeeting(meeting);
+		MeetingView newMeeting = meetingService.create(meeting);
 		
 		if (newMeeting == null) {
 			
@@ -62,7 +62,7 @@ public class MeetingRestController {
 	@RequestMapping(value="/", method=RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<MeetingView>> findAllMeetings() {
 		
-		List<MeetingView> allMeetings = meetingService.findAllMeetings();
+		List<MeetingView> allMeetings = meetingService.findAll();
 		return new ResponseEntity<>(allMeetings, HttpStatus.OK);
 		
 	}
@@ -80,7 +80,7 @@ public class MeetingRestController {
 	@RequestMapping(value="/", method=RequestMethod.PUT, produces=MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<MeetingView> updateMeeting(@RequestBody MeetingView meeting) {
 		
-		MeetingView updatedMeeting = meetingService.updateMeeting(meeting);
+		MeetingView updatedMeeting = meetingService.update(meeting);
 		return new ResponseEntity<>(updatedMeeting, HttpStatus.OK);
 			
 	}

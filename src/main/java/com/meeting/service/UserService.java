@@ -7,15 +7,15 @@ import com.meeting.viewmodel.UserView;
 
 public interface UserService {
 
-	UserView createUser(UserView user);
+	UserView create(UserView user);
 	
-	UserView updateUser(UserView user);
+	UserView update(UserView user);
 	
 	boolean deleteById(Long id);
 	
 	UserView findById(Long id);
 	
-	List<UserView> findAllUsers();
+	List<UserView> findAll();
 	
-	boolean loginUser(Login account);
+	boolean login(Login account);
 }

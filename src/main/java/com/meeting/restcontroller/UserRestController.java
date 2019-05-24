@@ -26,7 +26,7 @@ public class UserRestController {
 	@RequestMapping(value="/", method=RequestMethod.POST, consumes=MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<UserView> create(@RequestBody UserView user) {
 		
-		UserView newUser = userService.createUser(user);
+		UserView newUser = userService.create(user);
 		
 		if (newUser == null) {
 			
@@ -62,7 +62,7 @@ public class UserRestController {
 	@RequestMapping(value="/", method=RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<UserView>> getAll() {
 		
-		List<UserView> allUsers = userService.findAllUsers();
+		List<UserView> allUsers = userService.findAll();
 		
 		if (allUsers.isEmpty()) {
 			
@@ -80,7 +80,7 @@ public class UserRestController {
 	@RequestMapping(value="/", method=RequestMethod.PUT)
 	public ResponseEntity<UserView> update(@RequestBody UserView user) {
 		
-		UserView updatedUser = userService.updateUser(user);
+		UserView updatedUser = userService.update(user);
 		
 		if (updatedUser == null) {
 			

@@ -1,33 +1,65 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results skipped="0" failed="0" ignored="0" total="4" passed="4">
+<testng-results skipped="0" failed="0" ignored="0" total="12" passed="12">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="1338" started-at="2019-05-23T20:58:50Z" finished-at="2019-05-23T20:58:52Z">
+  <suite name="Default suite" duration-ms="1485" started-at="2019-05-24T21:08:26Z" finished-at="2019-05-24T21:08:28Z">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="1338" started-at="2019-05-23T20:58:50Z" finished-at="2019-05-23T20:58:52Z">
-      <class name="com.meeting.service.MeetingServiceTest">
-        <test-method status="PASS" signature="setUp()[pri:0, instance:com.meeting.service.MeetingServiceTest@66f0548d]" name="setUp" is-config="true" duration-ms="1181" started-at="2019-05-23T20:58:50Z" finished-at="2019-05-23T20:58:51Z">
+    <test name="Default test" duration-ms="1485" started-at="2019-05-24T21:08:26Z" finished-at="2019-05-24T21:08:28Z">
+      <class name="com.meeting.service.UserServiceTest">
+        <test-method status="PASS" signature="setUp()[pri:0, instance:com.meeting.service.UserServiceTest@1a0b5323]" name="setUp" is-config="true" duration-ms="1281" started-at="2019-05-24T21:08:26Z" finished-at="2019-05-24T21:08:28Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method status="PASS" signature="deleteByIdNegative()[pri:0, instance:com.meeting.service.MeetingServiceTest@66f0548d]" name="deleteByIdNegative" duration-ms="70" started-at="2019-05-23T20:58:52Z" finished-at="2019-05-23T20:58:52Z">
+        <test-method status="PASS" signature="createNegative()[pri:0, instance:com.meeting.service.UserServiceTest@1a0b5323]" name="createNegative" duration-ms="57" started-at="2019-05-24T21:08:28Z" finished-at="2019-05-24T21:08:28Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- createNegative -->
+        <test-method status="PASS" signature="createPositive()[pri:0, instance:com.meeting.service.UserServiceTest@1a0b5323]" name="createPositive" duration-ms="13" started-at="2019-05-24T21:08:28Z" finished-at="2019-05-24T21:08:28Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- createPositive -->
+        <test-method status="PASS" signature="deleteByIdNegative()[pri:0, instance:com.meeting.service.UserServiceTest@1a0b5323]" name="deleteByIdNegative" duration-ms="3" started-at="2019-05-24T21:08:28Z" finished-at="2019-05-24T21:08:28Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- deleteByIdNegative -->
-        <test-method status="PASS" signature="deleteByIdPositive()[pri:0, instance:com.meeting.service.MeetingServiceTest@66f0548d]" name="deleteByIdPositive" duration-ms="5" started-at="2019-05-23T20:58:52Z" finished-at="2019-05-23T20:58:52Z">
+        <test-method status="PASS" signature="deleteByIdPositive()[pri:0, instance:com.meeting.service.UserServiceTest@1a0b5323]" name="deleteByIdPositive" duration-ms="5" started-at="2019-05-24T21:08:28Z" finished-at="2019-05-24T21:08:28Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- deleteByIdPositive -->
-        <test-method status="PASS" signature="findByIdNegative()[pri:0, instance:com.meeting.service.MeetingServiceTest@66f0548d]" name="findByIdNegative" duration-ms="10" started-at="2019-05-23T20:58:52Z" finished-at="2019-05-23T20:58:52Z">
+        <test-method status="PASS" signature="findAllNegative()[pri:0, instance:com.meeting.service.UserServiceTest@1a0b5323]" name="findAllNegative" duration-ms="3" started-at="2019-05-24T21:08:28Z" finished-at="2019-05-24T21:08:28Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- findAllNegative -->
+        <test-method status="PASS" signature="findAllPositive()[pri:0, instance:com.meeting.service.UserServiceTest@1a0b5323]" name="findAllPositive" duration-ms="15" started-at="2019-05-24T21:08:28Z" finished-at="2019-05-24T21:08:28Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- findAllPositive -->
+        <test-method status="PASS" signature="findByIdNegative()[pri:0, instance:com.meeting.service.UserServiceTest@1a0b5323]" name="findByIdNegative" duration-ms="3" started-at="2019-05-24T21:08:28Z" finished-at="2019-05-24T21:08:28Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- findByIdNegative -->
-        <test-method status="PASS" signature="findByIdPositive()[pri:0, instance:com.meeting.service.MeetingServiceTest@66f0548d]" name="findByIdPositive" duration-ms="4" started-at="2019-05-23T20:58:52Z" finished-at="2019-05-23T20:58:52Z">
+        <test-method status="PASS" signature="findByIdPositive()[pri:0, instance:com.meeting.service.UserServiceTest@1a0b5323]" name="findByIdPositive" duration-ms="3" started-at="2019-05-24T21:08:28Z" finished-at="2019-05-24T21:08:28Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- findByIdPositive -->
-      </class> <!-- com.meeting.service.MeetingServiceTest -->
+        <test-method status="PASS" signature="loginNegative()[pri:0, instance:com.meeting.service.UserServiceTest@1a0b5323]" name="loginNegative" duration-ms="2" started-at="2019-05-24T21:08:28Z" finished-at="2019-05-24T21:08:28Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- loginNegative -->
+        <test-method status="PASS" signature="loginPositive()[pri:0, instance:com.meeting.service.UserServiceTest@1a0b5323]" name="loginPositive" duration-ms="4" started-at="2019-05-24T21:08:28Z" finished-at="2019-05-24T21:08:28Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- loginPositive -->
+        <test-method status="PASS" signature="updateNegative()[pri:0, instance:com.meeting.service.UserServiceTest@1a0b5323]" name="updateNegative" duration-ms="2" started-at="2019-05-24T21:08:28Z" finished-at="2019-05-24T21:08:28Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- updateNegative -->
+        <test-method status="PASS" signature="updatePositive()[pri:0, instance:com.meeting.service.UserServiceTest@1a0b5323]" name="updatePositive" duration-ms="2" started-at="2019-05-24T21:08:28Z" finished-at="2019-05-24T21:08:28Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- updatePositive -->
+      </class> <!-- com.meeting.service.UserServiceTest -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>

@@ -110,4 +110,5 @@ public class Meeting {
 				", Location: " + this.location + 
 				" | " + this.hostUser.toString();
 	}
+	
 }

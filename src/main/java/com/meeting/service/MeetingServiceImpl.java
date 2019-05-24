@@ -21,41 +21,45 @@ public class MeetingServiceImpl implements MeetingService {
 	private MeetingDao dao;
 
 	@Override
-	public MeetingView createMeeting(MeetingView meetingView) {
+	public MeetingView create(MeetingView meetingView) {
 		
 		// Convert object to be used by DAO
 		Meeting meeting = convertMeeting(meetingView);
 		
 		// Create new meeting
-		Meeting newMeeting = dao.createMeeting(meeting);
+		Meeting newMeeting = dao.create(meeting);
 		
-		// Convert object to be sent back to client
-		MeetingView newMeetingView = convertMeeting(newMeeting);
-		
-		return newMeetingView;
+		if (newMeeting == null) {
+			return null;
+		} else {
+			// Convert object to be sent back to client
+			return convertMeeting(newMeeting);
+		}
 		
 	}
 
 	@Override
-	public MeetingView updateMeeting(MeetingView meetingView) {
+	public MeetingView update(MeetingView meetingView) {
 
 		// Convert object to be used by DAO
 		Meeting meeting = convertMeeting(meetingView);
 		
 		// Create update meeting
-		Meeting updatedMeeting = dao.updateMeeting(meeting);
+		Meeting updatedMeeting = dao.update(meeting);
 		
-		// Convert object to be sent back to client
-		MeetingView updatedMeetingView = convertMeeting(updatedMeeting);
-		
-		return updatedMeetingView;
+		if (updatedMeeting == null) {
+			return null;
+		} else {
+			// Convert object to be sent back to client
+			return convertMeeting(updatedMeeting);
+		}
 		
 	}
 
 	@Override
 	public boolean deleteById(Long id) {
 		
-		return dao.deleteById(id);
+		return (dao.deleteById(id) > 0);
 		
 	}
 
@@ -68,6 +72,7 @@ public class MeetingServiceImpl implements MeetingService {
 		if (meeting == null) {
 			return null;
 		} else {
+			// Convert object to be sent back to client
 			return convertMeeting(meeting);
 		}
 
@@ -77,29 +82,45 @@ public class MeetingServiceImpl implements MeetingService {
 	public List<MeetingView> findByHost(Long id) {
 		
 		List<Meeting> meetings = dao.findByHost(id);
-		List<MeetingView> meetingViews = new ArrayList<>();
 		
-		for (Meeting meeting: meetings) {
-			MeetingView meetingView = convertMeeting(meeting);
-			meetingViews.add(meetingView);
+		if (meetings == null) {
+			
+			return null;
+			
+		} else {
+			
+			List<MeetingView> meetingViews = new ArrayList<>();
+			
+			for (Meeting m : meetings) {
+				meetingViews.add(convertMeeting(m));
+			}
+			
+			return meetingViews;
+			
 		}
-		
-		return meetingViews;
 		
 	}
 
 	@Override
-	public List<MeetingView> findAllMeetings() {
+	public List<MeetingView> findAll() {
 		
-		List<Meeting> meetings = dao.findAllMeetings();
-		List<MeetingView> meetingViews = new ArrayList<>();
+		List<Meeting> meetings = dao.findAll();
 		
-		for (Meeting meeting: meetings) {
-			MeetingView meetingView = convertMeeting(meeting);
-			meetingViews.add(meetingView);
+		if (meetings == null) {
+			
+			return null;
+			
+		} else {
+			
+			List<MeetingView> meetingViews = new ArrayList<>();
+			
+			for (Meeting m : meetings) {
+				meetingViews.add(convertMeeting(m));
+			}
+			
+			return meetingViews;
+			
 		}
-		
-		return meetingViews;
 		
 	}
 	
@@ -107,20 +128,13 @@ public class MeetingServiceImpl implements MeetingService {
 	// Helper Methods
 	private Meeting convertMeeting(MeetingView meetingView) {
 		
-		Meeting meeting = new Meeting(meetingView);
-		UserView userView = meetingView.getHostUser();
-		User user = new User(userView);
-		meeting.setHostUser(user);
-		
+		Meeting meeting = new Meeting(meetingView, new User(meetingView.getHostUser()));
 		return meeting;
 	}
 	private MeetingView convertMeeting(Meeting meeting) {
 		
-		MeetingView meetingView = new MeetingView(meeting);
-		User user = meeting.getHostUser();
-		UserView userView = new UserView(user);
-		meetingView.setHostUser(userView);
-		
+		MeetingView meetingView = new MeetingView(meeting, new UserView(meeting.getHostUser()));
 		return meetingView;
 	}
+	
 }
