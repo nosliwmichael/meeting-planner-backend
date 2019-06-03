@@ -48,7 +48,7 @@ public class MeetingServiceTest {
 	}
 	
 	@Test
-	public void createPositive() throws Exception {
+	public void CreateNotNull() {
 		
 		MeetingView meetingView = meetingViews.get(0);
 		Meeting meeting = meetings.get(0);
@@ -62,21 +62,48 @@ public class MeetingServiceTest {
 	}
 	
 	@Test
-	public void createNegative() throws Exception {
+	public void CreateNull() {
 
 		MeetingView meetingView = meetingViews.get(0);
-		Meeting meeting = meetings.get(0);
 		
-		Mockito.when(daoMock.create(meeting)).thenReturn(null);
+		Mockito.when(daoMock.create(Mockito.any(Meeting.class))).thenReturn(null);
 		
 		MeetingView actual = service.create(meetingView);
-		
-		Assert.assertEquals(actual, null);
+
+		Assert.assertNull(actual);
 		
 	}
 	
 	@Test
-	public void findByIdPositive() throws Exception {
+	public void CreateEquals() {
+		
+		MeetingView meetingView = meetingViews.get(0);
+		Meeting meeting = meetings.get(0);
+		
+		Mockito.when(daoMock.create(Mockito.any(Meeting.class))).thenReturn(meeting);
+		
+		MeetingView actual = service.create(meetingView);
+
+		Assert.assertEquals(actual.getSubject(), meetingView.getSubject());
+		
+	}
+	
+	@Test
+	public void CreateNotEquals() {
+		
+		MeetingView meetingView = meetingViews.get(0);
+		Meeting meeting = meetings.get(1);
+		
+		Mockito.when(daoMock.create(Mockito.any(Meeting.class))).thenReturn(meeting);
+		
+		MeetingView actual = service.create(meetingView);
+
+		Assert.assertNotEquals(actual.getSubject(), meetingView.getSubject());
+		
+	}
+	
+	@Test
+	public void FindByIdNotNull() {
 		
 		Meeting meeting = meetings.get(0);
 		
@@ -89,18 +116,18 @@ public class MeetingServiceTest {
 	}
 	
 	@Test
-	public void findByIdNegative() throws Exception {
+	public void FindByIdNull() {
 				
 		Mockito.when(daoMock.findById(1L)).thenReturn(null);
 		
 		MeetingView actual = service.findById(1L);
-		
-		Assert.assertEquals(actual, null);
+
+		Assert.assertNull(actual);
 		
 	}
 	
 	@Test
-	public void findByHostPositive() throws Exception {
+	public void FindByHostEquals() {
 		
 		Mockito.when(daoMock.findByHost(1L)).thenReturn(meetings);
 		
@@ -111,18 +138,18 @@ public class MeetingServiceTest {
 	}
 	
 	@Test
-	public void findByHostNegative() throws Exception {
+	public void FindByHostNull() {
 		
 		Mockito.when(daoMock.findByHost(1L)).thenReturn(null);
 		
 		List<MeetingView> actual = service.findByHost(1L);
 		
-		Assert.assertEquals(actual, null);
+		Assert.assertNull(actual);
 		
 	}
 	
 	@Test
-	public void findAllPositive() throws Exception {
+	public void FindAllEquals() {
 		
 		Mockito.when(daoMock.findAll()).thenReturn(meetings);
 		
@@ -133,7 +160,7 @@ public class MeetingServiceTest {
 	}
 	
 	@Test
-	public void findAllNegative() throws Exception {
+	public void FindAllNull() {
 		
 		Mockito.when(daoMock.findAll()).thenReturn(null);
 		
@@ -144,7 +171,7 @@ public class MeetingServiceTest {
 	}
 	
 	@Test
-	public void updatePositive() throws Exception {
+	public void UpdateNotNull() {
 		
 		MeetingView meetingView = meetingViews.get(0);
 		Meeting meeting = meetings.get(0);
@@ -158,12 +185,11 @@ public class MeetingServiceTest {
 	}
 	
 	@Test
-	public void updateNegative() throws Exception {
+	public void UpdateNull() {
 		
 		MeetingView meetingView = meetingViews.get(0);
-		Meeting meeting = meetings.get(0);
 		
-		Mockito.when(daoMock.update(meeting)).thenReturn(null);
+		Mockito.when(daoMock.update(Mockito.any(Meeting.class))).thenReturn(null);
 		
 		MeetingView actual = service.update(meetingView);
 		
@@ -172,7 +198,7 @@ public class MeetingServiceTest {
 	}
 	
 	@Test
-	public void deleteByIdPositive() throws Exception {
+	public void DeleteByIdTrue() {
 		
 		Mockito.when(daoMock.deleteById(1L)).thenReturn(1);
 		
@@ -181,7 +207,7 @@ public class MeetingServiceTest {
 	}
 	
 	@Test
-	public void deleteByIdNegative() throws Exception {
+	public void DeleteByIdFalse() {
 		
 		Mockito.when(daoMock.deleteById(1L)).thenReturn(0);
 		

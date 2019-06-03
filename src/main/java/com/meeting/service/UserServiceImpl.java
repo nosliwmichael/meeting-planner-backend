@@ -1,9 +1,7 @@
 package com.meeting.service;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,9 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.meeting.dao.UserDao;
 import com.meeting.model.Login;
-import com.meeting.model.Meeting;
 import com.meeting.model.User;
-import com.meeting.viewmodel.MeetingView;
 import com.meeting.viewmodel.UserView;
 
 @Service
@@ -28,7 +24,7 @@ public class UserServiceImpl implements UserService {
 	public UserView create(UserView userView) {
 		
 		// Convert from View Model to Entity Model
-		User user = convertUser(userView);
+		User user = convertUserViewWithMeetings(userView);
 
 		// Create new user
 		User newUser = dao.create(user);
@@ -40,7 +36,7 @@ public class UserServiceImpl implements UserService {
 		} else {
 			
 			// Convert from Entity Model to View Model
-			return convertUser(newUser);
+			return convertUserWithMeetings(newUser);
 			
 		}
 		
@@ -50,7 +46,7 @@ public class UserServiceImpl implements UserService {
 	public UserView update(UserView userView) {
 
 		// Convert from View Model to Entity Model
-		User user = convertUser(userView);
+		User user = convertUserViewWithMeetings(userView);
 		
 		// Update user
 		User updatedUser = dao.update(user);
@@ -62,7 +58,7 @@ public class UserServiceImpl implements UserService {
 		} else {
 			
 			// Convert from Entity Model to View Model
-			return convertUser(updatedUser);
+			return convertUserWithMeetings(updatedUser);
 			
 		}
 		
@@ -88,7 +84,7 @@ public class UserServiceImpl implements UserService {
 		} else {
 			
 			// Convert from Entity Model to View Model
-			return convertUser(user);
+			return convertUserWithMeetings(user);
 			
 		}
 		
@@ -108,7 +104,7 @@ public class UserServiceImpl implements UserService {
 			List<UserView> userViews = new ArrayList<>();
 			
 			for (User user: users) {
-				UserView userView = convertUser(user);
+				UserView userView = convertUserWithMeetings(user);
 				userViews.add(userView);
 			}
 			
@@ -137,42 +133,43 @@ public class UserServiceImpl implements UserService {
 	}
 
 	
-	// Convert from View Model to Entity Model
-	private User convertUser(UserView userView) {
+	// Conversion methods without meetings
+	public static User convertUserView(UserView userView) {
+
+		return new User(userView);
+		
+	}
+	public static UserView convertUser(User user) {
+		
+		return new UserView(user);
+		
+	}
+	
+	// Conversion methods with meetings
+	public static User convertUserViewWithMeetings(UserView userView) {
 		
 		User user = new User(userView);
-		user.setMeetings( convertMeetingViews( userView.getMeetings() ) );
+		user.setMeetings( userView
+							.getMeetings()
+							.stream()
+							.map(MeetingServiceImpl::convertMeetingView)
+							.collect(Collectors.toSet())
+						);
 		return user;
 		
 	}
-	// Convert from Entity Model to View Model
-	private UserView convertUser(User user) {
+	public static UserView convertUserWithMeetings(User user) {
 		
 		UserView userView = new UserView(user);
-		userView.setMeetings( convertMeetings( user.getMeetings() ) );
+		userView.setMeetings( user
+								.getMeetings()
+								.stream()
+								.map(MeetingServiceImpl::convertMeeting)
+								.collect(Collectors.toSet())
+							);
 		userView.setPassword(null);
 		return userView;
 		
 	}
 	
-	// Convert collection type Meeting to MeetingView
-	private Set<MeetingView> convertMeetings(Set<Meeting> meetings) {
-		
-		if (meetings == null) {
-			return new HashSet<MeetingView>();
-		} else {
-			return meetings.stream().map(MeetingView::new).collect(Collectors.toSet());
-		}
-		
-	}
-	// Convert collection type MeetingView to Meeting
-	private Set<Meeting> convertMeetingViews(Set<MeetingView> meetingViews) {
-		
-		if (meetingViews == null) {
-			return new HashSet<Meeting>();
-		} else {
-			return meetingViews.stream().map(Meeting::new).collect(Collectors.toSet());
-		}
-		
-	}
 }

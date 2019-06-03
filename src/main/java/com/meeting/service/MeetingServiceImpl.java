@@ -1,7 +1,7 @@
 package com.meeting.service;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,9 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.meeting.dao.MeetingDao;
 import com.meeting.model.Meeting;
-import com.meeting.model.User;
 import com.meeting.viewmodel.MeetingView;
-import com.meeting.viewmodel.UserView;
 
 @Service
 @Transactional
@@ -24,7 +22,7 @@ public class MeetingServiceImpl implements MeetingService {
 	public MeetingView create(MeetingView meetingView) {
 		
 		// Convert object to be used by DAO
-		Meeting meeting = convertMeeting(meetingView);
+		Meeting meeting = convertMeetingViewWithUser(meetingView);
 		
 		// Create new meeting
 		Meeting newMeeting = dao.create(meeting);
@@ -33,7 +31,7 @@ public class MeetingServiceImpl implements MeetingService {
 			return null;
 		} else {
 			// Convert object to be sent back to client
-			return convertMeeting(newMeeting);
+			return convertMeetingWithUser(newMeeting);
 		}
 		
 	}
@@ -42,7 +40,7 @@ public class MeetingServiceImpl implements MeetingService {
 	public MeetingView update(MeetingView meetingView) {
 
 		// Convert object to be used by DAO
-		Meeting meeting = convertMeeting(meetingView);
+		Meeting meeting = convertMeetingViewWithUser(meetingView);
 		
 		// Create update meeting
 		Meeting updatedMeeting = dao.update(meeting);
@@ -51,7 +49,7 @@ public class MeetingServiceImpl implements MeetingService {
 			return null;
 		} else {
 			// Convert object to be sent back to client
-			return convertMeeting(updatedMeeting);
+			return convertMeetingWithUser(updatedMeeting);
 		}
 		
 	}
@@ -73,7 +71,7 @@ public class MeetingServiceImpl implements MeetingService {
 			return null;
 		} else {
 			// Convert object to be sent back to client
-			return convertMeeting(meeting);
+			return convertMeetingWithUser(meeting);
 		}
 
 	}
@@ -89,11 +87,9 @@ public class MeetingServiceImpl implements MeetingService {
 			
 		} else {
 			
-			List<MeetingView> meetingViews = new ArrayList<>();
-			
-			for (Meeting m : meetings) {
-				meetingViews.add(convertMeeting(m));
-			}
+			List<MeetingView> meetingViews = meetings.stream()
+					.map(MeetingServiceImpl::convertMeetingWithUser)
+					.collect(Collectors.toList());
 			
 			return meetingViews;
 			
@@ -112,11 +108,9 @@ public class MeetingServiceImpl implements MeetingService {
 			
 		} else {
 			
-			List<MeetingView> meetingViews = new ArrayList<>();
-			
-			for (Meeting m : meetings) {
-				meetingViews.add(convertMeeting(m));
-			}
+			List<MeetingView> meetingViews = meetings.stream()
+					.map(MeetingServiceImpl::convertMeetingWithUser)
+					.collect(Collectors.toList());
 			
 			return meetingViews;
 			
@@ -125,16 +119,34 @@ public class MeetingServiceImpl implements MeetingService {
 	}
 	
 	
-	// Helper Methods
-	private Meeting convertMeeting(MeetingView meetingView) {
+	// Conversion methods without User
+	public static Meeting convertMeetingView(MeetingView meetingView) {
 		
-		Meeting meeting = new Meeting(meetingView, new User(meetingView.getHostUser()));
+		Meeting meeting = new Meeting(meetingView);
 		return meeting;
-	}
-	private MeetingView convertMeeting(Meeting meeting) {
 		
-		MeetingView meetingView = new MeetingView(meeting, new UserView(meeting.getHostUser()));
+	}
+	public static MeetingView convertMeeting(Meeting meeting) {
+		
+		MeetingView meetingView = new MeetingView(meeting);
 		return meetingView;
+		
+	}
+	
+	// Conversion methods with User
+	public static Meeting convertMeetingViewWithUser(MeetingView meetingView) {
+		
+		Meeting meeting = new Meeting(meetingView);
+		meeting.setHostUser(UserServiceImpl.convertUserView(meetingView.getHostUser()));
+		return meeting;
+		
+	}
+	public static MeetingView convertMeetingWithUser(Meeting meeting) {
+		
+		MeetingView meetingView = new MeetingView(meeting);
+		meetingView.setHostUser(UserServiceImpl.convertUser(meeting.getHostUser()));
+		return meetingView;
+		
 	}
 	
 }

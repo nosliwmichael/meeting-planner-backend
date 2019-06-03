@@ -5,9 +5,8 @@
     <classes>
       <class name="com.meeting.service.UserServiceTest">
         <methods>
-          <include name="createPositive"/>
+          <include name="createNotNull"/>
           <include name="setUp"/>
-          <include name="findByIdPositive"/>
         </methods>
       </class> <!-- com.meeting.service.UserServiceTest -->
     </classes>

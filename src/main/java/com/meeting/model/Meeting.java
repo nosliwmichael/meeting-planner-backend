@@ -44,6 +44,7 @@ public class Meeting {
 		this.subject = meetingView.getSubject();
 		this.time = meetingView.getTime();
 		this.location = meetingView.getLocation();
+		this.hostUser = new User();
 	}
 	public Meeting(MeetingView meetingView, User user) {
 		this.meetingId = meetingView.getId();
@@ -57,6 +58,7 @@ public class Meeting {
 		this.subject = subject;
 		this.time = time;
 		this.location = location;
+		this.hostUser = new User();
 	}
 	public Meeting(Long id, String subject, Timestamp time, String location, User user) {
 		this.meetingId = id;

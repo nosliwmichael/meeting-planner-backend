@@ -19,6 +19,7 @@
   	<jackson.version>2.9.8</jackson.version>
   	<mockito.version>2.27.0</mockito.version>
   	<testng.version>6.14.3</testng.version>
+  	<selenium.version>3.141.59</selenium.version>
   </properties>
   
   <dependencies>
@@ -81,6 +82,12 @@
 	    <scope>test</scope>
 	</dependency>
 		
+	<!-- SELENIUM -->
+	<dependency>
+	    <groupId>org.seleniumhq.selenium</groupId>
+	    <artifactId>selenium-java</artifactId>
+	    <version>${selenium.version}</version>
+	</dependency>
 
   </dependencies>
   

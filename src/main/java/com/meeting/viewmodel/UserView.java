@@ -1,5 +1,6 @@
 package com.meeting.viewmodel;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import com.meeting.model.User;
@@ -22,6 +23,17 @@ public class UserView {
 		this.lastName = user.getLastName();
 		this.email = user.getEmail();
 		this.password = user.getPassword();
+		this.meetings = new HashSet<>();
+		
+	}
+	public UserView(User user, Set<MeetingView> meetings) {
+		
+		this.id = user.getId();
+		this.firstName = user.getFirstName();
+		this.lastName = user.getLastName();
+		this.email = user.getEmail();
+		this.password = user.getPassword();
+		this.meetings = meetings;		
 		
 	}
 	public UserView(Long id, String firstName, String lastName, String email, String password) {
@@ -31,6 +43,7 @@ public class UserView {
 		this.lastName = lastName;
 		this.email = email;
 		this.password = password;
+		this.meetings = new HashSet<>();
 		
 	}
 	public UserView(Long id, String firstName, String lastName, String email, String password, Set<MeetingView> meetings) {

@@ -1,5 +1,6 @@
 package com.meeting.model;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -47,6 +48,17 @@ public class User {
 		this.lastName = userView.getLastName();
 		this.email = userView.getEmail();
 		this.password = userView.getPassword();
+		this.meetings = new HashSet<>();
+		
+	}
+	public User(UserView userView, Set<Meeting> meetings) {
+		
+		this.userId = userView.getId();
+		this.firstName = userView.getFirstName();
+		this.lastName = userView.getLastName();
+		this.email = userView.getEmail();
+		this.password = userView.getPassword();
+		this.meetings = meetings;
 		
 	}
 	public User(Long id, String firstName, String lastName, String email, String password) {
@@ -55,6 +67,7 @@ public class User {
 		this.lastName = lastName;
 		this.email = email;
 		this.password = password;
+		this.meetings = new HashSet<>();
 	}
 	public User(Long id, String firstName, String lastName, String email, String password, Set<Meeting> meetings) {
 		this.userId = id;
