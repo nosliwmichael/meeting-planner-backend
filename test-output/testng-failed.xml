@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
-  <test thread-count="5" name="Default test(failed)">
+<suite guice-stage="DEVELOPMENT" name="Failed suite [ApplicationName Suite]">
+  <test thread-count="5" name="test.meeting.frontend(failed)">
     <classes>
-      <class name="com.meeting.service.UserServiceTest">
+      <class name="test.meeting.frontend.MeetingTest">
         <methods>
-          <include name="createNotNull"/>
-          <include name="setUp"/>
+          <include name="afterClass"/>
+          <include name="deleteMeeting"/>
+          <include name="beforeClass"/>
         </methods>
-      </class> <!-- com.meeting.service.UserServiceTest -->
+      </class> <!-- test.meeting.frontend.MeetingTest -->
     </classes>
-  </test> <!-- Default test(failed) -->
-</suite> <!-- Failed suite [Default suite] -->
+  </test> <!-- test.meeting.frontend(failed) -->
+</suite> <!-- Failed suite [ApplicationName Suite] -->

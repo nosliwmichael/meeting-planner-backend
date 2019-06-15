@@ -1,37 +1,135 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results skipped="0" failed="0" ignored="0" total="4" passed="4">
+<testng-results skipped="0" failed="0" ignored="0" total="28" passed="28">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="11775" started-at="2019-05-31T20:56:05Z" finished-at="2019-05-31T20:56:17Z">
+  <suite name="Default suite" duration-ms="1811" started-at="2019-06-04T18:43:36Z" finished-at="2019-06-04T18:43:38Z">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="11775" started-at="2019-05-31T20:56:05Z" finished-at="2019-05-31T20:56:17Z">
-      <class name="com.meeting.frontend.WebAppTest">
-        <test-method status="PASS" signature="beforeSuite()[pri:0, instance:com.meeting.frontend.WebAppTest@4dfa3a9d]" name="beforeSuite" is-config="true" duration-ms="4186" started-at="2019-05-31T20:56:05Z" finished-at="2019-05-31T20:56:09Z">
+    <test name="Default test" duration-ms="1811" started-at="2019-06-04T18:43:36Z" finished-at="2019-06-04T18:43:38Z">
+      <class name="test.meeting.backend.MeetingServiceTest">
+        <test-method status="PASS" signature="setUp()[pri:0, instance:test.meeting.backend.MeetingServiceTest@21c815e4]" name="setUp" is-config="true" duration-ms="1364" started-at="2019-06-04T18:43:36Z" finished-at="2019-06-04T18:43:37Z">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- beforeSuite -->
-        <test-method status="PASS" signature="login()[pri:1, instance:com.meeting.frontend.WebAppTest@4dfa3a9d]" name="login" duration-ms="1694" started-at="2019-05-31T20:56:09Z" finished-at="2019-05-31T20:56:11Z">
+        </test-method> <!-- setUp -->
+        <test-method status="PASS" signature="setUp()[pri:0, instance:test.meeting.backend.UserServiceTest@7342e05d]" name="setUp" is-config="true" duration-ms="70" started-at="2019-06-04T18:43:37Z" finished-at="2019-06-04T18:43:38Z">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- login -->
-        <test-method status="PASS" signature="createMeeting()[pri:2, instance:com.meeting.frontend.WebAppTest@4dfa3a9d]" name="createMeeting" duration-ms="1887" started-at="2019-05-31T20:56:11Z" finished-at="2019-05-31T20:56:13Z">
+        </test-method> <!-- setUp -->
+        <test-method status="PASS" signature="CreateEquals()[pri:0, instance:test.meeting.backend.MeetingServiceTest@21c815e4]" name="CreateEquals" duration-ms="80" started-at="2019-06-04T18:43:38Z" finished-at="2019-06-04T18:43:38Z">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- createMeeting -->
-        <test-method status="PASS" signature="updateMeeting()[pri:3, instance:com.meeting.frontend.WebAppTest@4dfa3a9d]" name="updateMeeting" duration-ms="2325" started-at="2019-05-31T20:56:13Z" finished-at="2019-05-31T20:56:15Z">
+        </test-method> <!-- CreateEquals -->
+        <test-method status="PASS" signature="CreateNotEquals()[pri:0, instance:test.meeting.backend.MeetingServiceTest@21c815e4]" name="CreateNotEquals" duration-ms="6" started-at="2019-06-04T18:43:38Z" finished-at="2019-06-04T18:43:38Z">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- updateMeeting -->
-        <test-method status="PASS" signature="deleteMeeting()[pri:4, instance:com.meeting.frontend.WebAppTest@4dfa3a9d]" name="deleteMeeting" duration-ms="1370" started-at="2019-05-31T20:56:15Z" finished-at="2019-05-31T20:56:16Z">
+        </test-method> <!-- CreateNotEquals -->
+        <test-method status="PASS" signature="CreateNotNull()[pri:0, instance:test.meeting.backend.MeetingServiceTest@21c815e4]" name="CreateNotNull" duration-ms="4" started-at="2019-06-04T18:43:38Z" finished-at="2019-06-04T18:43:38Z">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- deleteMeeting -->
-        <test-method status="PASS" signature="afterSuite()[pri:0, instance:com.meeting.frontend.WebAppTest@4dfa3a9d]" name="afterSuite" is-config="true" duration-ms="271" started-at="2019-05-31T20:56:16Z" finished-at="2019-05-31T20:56:17Z">
+        </test-method> <!-- CreateNotNull -->
+        <test-method status="PASS" signature="CreateNull()[pri:0, instance:test.meeting.backend.MeetingServiceTest@21c815e4]" name="CreateNull" duration-ms="4" started-at="2019-06-04T18:43:38Z" finished-at="2019-06-04T18:43:38Z">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- afterSuite -->
-      </class> <!-- com.meeting.frontend.WebAppTest -->
+        </test-method> <!-- CreateNull -->
+        <test-method status="PASS" signature="DeleteByIdFalse()[pri:0, instance:test.meeting.backend.MeetingServiceTest@21c815e4]" name="DeleteByIdFalse" duration-ms="5" started-at="2019-06-04T18:43:38Z" finished-at="2019-06-04T18:43:38Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- DeleteByIdFalse -->
+        <test-method status="PASS" signature="DeleteByIdTrue()[pri:0, instance:test.meeting.backend.MeetingServiceTest@21c815e4]" name="DeleteByIdTrue" duration-ms="3" started-at="2019-06-04T18:43:38Z" finished-at="2019-06-04T18:43:38Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- DeleteByIdTrue -->
+        <test-method status="PASS" signature="FindAllEquals()[pri:0, instance:test.meeting.backend.MeetingServiceTest@21c815e4]" name="FindAllEquals" duration-ms="5" started-at="2019-06-04T18:43:38Z" finished-at="2019-06-04T18:43:38Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- FindAllEquals -->
+        <test-method status="PASS" signature="FindAllNull()[pri:0, instance:test.meeting.backend.MeetingServiceTest@21c815e4]" name="FindAllNull" duration-ms="5" started-at="2019-06-04T18:43:38Z" finished-at="2019-06-04T18:43:38Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- FindAllNull -->
+        <test-method status="PASS" signature="FindByHostEquals()[pri:0, instance:test.meeting.backend.MeetingServiceTest@21c815e4]" name="FindByHostEquals" duration-ms="4" started-at="2019-06-04T18:43:38Z" finished-at="2019-06-04T18:43:38Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- FindByHostEquals -->
+        <test-method status="PASS" signature="FindByHostNull()[pri:0, instance:test.meeting.backend.MeetingServiceTest@21c815e4]" name="FindByHostNull" duration-ms="2" started-at="2019-06-04T18:43:38Z" finished-at="2019-06-04T18:43:38Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- FindByHostNull -->
+        <test-method status="PASS" signature="FindByIdNotNull()[pri:0, instance:test.meeting.backend.MeetingServiceTest@21c815e4]" name="FindByIdNotNull" duration-ms="8" started-at="2019-06-04T18:43:38Z" finished-at="2019-06-04T18:43:38Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- FindByIdNotNull -->
+        <test-method status="PASS" signature="FindByIdNull()[pri:0, instance:test.meeting.backend.MeetingServiceTest@21c815e4]" name="FindByIdNull" duration-ms="4" started-at="2019-06-04T18:43:38Z" finished-at="2019-06-04T18:43:38Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- FindByIdNull -->
+        <test-method status="PASS" signature="UpdateNotNull()[pri:0, instance:test.meeting.backend.MeetingServiceTest@21c815e4]" name="UpdateNotNull" duration-ms="6" started-at="2019-06-04T18:43:38Z" finished-at="2019-06-04T18:43:38Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- UpdateNotNull -->
+        <test-method status="PASS" signature="UpdateNull()[pri:0, instance:test.meeting.backend.MeetingServiceTest@21c815e4]" name="UpdateNull" duration-ms="3" started-at="2019-06-04T18:43:38Z" finished-at="2019-06-04T18:43:38Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- UpdateNull -->
+      </class> <!-- test.meeting.backend.MeetingServiceTest -->
+      <class name="test.meeting.backend.UserServiceTest">
+        <test-method status="PASS" signature="CreateEquals()[pri:0, instance:test.meeting.backend.UserServiceTest@7342e05d]" name="CreateEquals" duration-ms="3" started-at="2019-06-04T18:43:38Z" finished-at="2019-06-04T18:43:38Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- CreateEquals -->
+        <test-method status="PASS" signature="CreateNotEquals()[pri:0, instance:test.meeting.backend.UserServiceTest@7342e05d]" name="CreateNotEquals" duration-ms="5" started-at="2019-06-04T18:43:38Z" finished-at="2019-06-04T18:43:38Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- CreateNotEquals -->
+        <test-method status="PASS" signature="createNotNull()[pri:0, instance:test.meeting.backend.UserServiceTest@7342e05d]" name="createNotNull" duration-ms="2" started-at="2019-06-04T18:43:38Z" finished-at="2019-06-04T18:43:38Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- createNotNull -->
+        <test-method status="PASS" signature="createNull()[pri:0, instance:test.meeting.backend.UserServiceTest@7342e05d]" name="createNull" duration-ms="2" started-at="2019-06-04T18:43:38Z" finished-at="2019-06-04T18:43:38Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- createNull -->
+        <test-method status="PASS" signature="deleteByIdFalse()[pri:0, instance:test.meeting.backend.UserServiceTest@7342e05d]" name="deleteByIdFalse" duration-ms="2" started-at="2019-06-04T18:43:38Z" finished-at="2019-06-04T18:43:38Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- deleteByIdFalse -->
+        <test-method status="PASS" signature="deleteByIdTrue()[pri:0, instance:test.meeting.backend.UserServiceTest@7342e05d]" name="deleteByIdTrue" duration-ms="5" started-at="2019-06-04T18:43:38Z" finished-at="2019-06-04T18:43:38Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- deleteByIdTrue -->
+        <test-method status="PASS" signature="findAllEquals()[pri:0, instance:test.meeting.backend.UserServiceTest@7342e05d]" name="findAllEquals" duration-ms="4" started-at="2019-06-04T18:43:38Z" finished-at="2019-06-04T18:43:38Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- findAllEquals -->
+        <test-method status="PASS" signature="findAllNull()[pri:0, instance:test.meeting.backend.UserServiceTest@7342e05d]" name="findAllNull" duration-ms="6" started-at="2019-06-04T18:43:38Z" finished-at="2019-06-04T18:43:38Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- findAllNull -->
+        <test-method status="PASS" signature="findByIdNotNull()[pri:0, instance:test.meeting.backend.UserServiceTest@7342e05d]" name="findByIdNotNull" duration-ms="3" started-at="2019-06-04T18:43:38Z" finished-at="2019-06-04T18:43:38Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- findByIdNotNull -->
+        <test-method status="PASS" signature="findByIdNull()[pri:0, instance:test.meeting.backend.UserServiceTest@7342e05d]" name="findByIdNull" duration-ms="3" started-at="2019-06-04T18:43:38Z" finished-at="2019-06-04T18:43:38Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- findByIdNull -->
+        <test-method status="PASS" signature="loginFalse()[pri:0, instance:test.meeting.backend.UserServiceTest@7342e05d]" name="loginFalse" duration-ms="5" started-at="2019-06-04T18:43:38Z" finished-at="2019-06-04T18:43:38Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- loginFalse -->
+        <test-method status="PASS" signature="loginTrue()[pri:0, instance:test.meeting.backend.UserServiceTest@7342e05d]" name="loginTrue" duration-ms="4" started-at="2019-06-04T18:43:38Z" finished-at="2019-06-04T18:43:38Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- loginTrue -->
+        <test-method status="PASS" signature="updateNotNull()[pri:0, instance:test.meeting.backend.UserServiceTest@7342e05d]" name="updateNotNull" duration-ms="4" started-at="2019-06-04T18:43:38Z" finished-at="2019-06-04T18:43:38Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- updateNotNull -->
+        <test-method status="PASS" signature="updateNull()[pri:0, instance:test.meeting.backend.UserServiceTest@7342e05d]" name="updateNull" duration-ms="28" started-at="2019-06-04T18:43:38Z" finished-at="2019-06-04T18:43:38Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- updateNull -->
+      </class> <!-- test.meeting.backend.UserServiceTest -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>

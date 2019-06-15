@@ -1,0 +1,15 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="ApplicationName Suite" verbose="1" >
+	<test name="test.meeting.frontend" >
+		<classes>
+			<class name="test.meeting.frontend.LoginTest" />
+			<class name="test.meeting.frontend.MeetingTest" />
+		</classes>
+	</test>
+	<test name="test.meeting.backend" >
+		<classes>
+			<class name="test.meeting.backend.MeetingServiceTest" />
+			<class name="test.meeting.backend.UserServiceTest"/>
+		</classes>
+	</test>
+</suite>

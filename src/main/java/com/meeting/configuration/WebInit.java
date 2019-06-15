@@ -6,7 +6,7 @@ public class WebInit extends AbstractAnnotationConfigDispatcherServletInitialize
 	
 	@Override
 	protected Class<?>[] getRootConfigClasses() {
-		return new Class[] { HibernateConfig.class };
+		return new Class[] { WebConfig.class };
 	}
 
 	@Override

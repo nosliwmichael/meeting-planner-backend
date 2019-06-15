@@ -3,12 +3,14 @@
 <suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="com.meeting.service.UserServiceTest">
+      <class name="com.meeting.frontend.LoginTest">
         <methods>
-          <include name="createNotNull"/>
-          <include name="setUp"/>
+          <include name="beforeClass"/>
+          <include name="afterClass"/>
+          <include name="loginPass"/>
+          <include name="loginFail"/>
         </methods>
-      </class> <!-- com.meeting.service.UserServiceTest -->
+      </class> <!-- com.meeting.frontend.LoginTest -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
