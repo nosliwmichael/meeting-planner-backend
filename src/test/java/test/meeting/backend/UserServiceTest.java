@@ -193,9 +193,9 @@ public class UserServiceTest {
 		
 		Mockito.when(daoMock.findByLogin(login.getEmail(), login.getPassword())).thenReturn(user);
 		
-		boolean actual = service.login(login);
+		UserView actual = service.login(login);
 
-		Assert.assertTrue(actual);
+		Assert.assertNotNull(actual);
 		
 	}
 	
@@ -206,7 +206,7 @@ public class UserServiceTest {
 		
 		Mockito.when(daoMock.findByLogin(login.getEmail(), login.getPassword())).thenReturn(null);
 				
-		Assert.assertFalse(service.login(login));
+		Assert.assertNull(service.login(login));
 		
 	}
 	

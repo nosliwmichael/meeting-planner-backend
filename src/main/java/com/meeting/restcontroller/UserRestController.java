@@ -4,13 +4,15 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.meeting.service.UserService;
@@ -25,7 +27,7 @@ public class UserRestController {
 	private UserService userService;
 	
 	// CREATE USER
-	@RequestMapping(value="/", method=RequestMethod.POST, consumes=MediaType.APPLICATION_JSON_VALUE)
+	@PostMapping(value="/")
 	public ResponseEntity<UserView> create(@RequestBody UserView user) {
 		
 		UserView newUser = userService.create(user);
@@ -43,7 +45,7 @@ public class UserRestController {
 	}
 	
 	// GET USER BY ID
-	@RequestMapping(value="/{id}", method=RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping(value="/{id}")
 	public ResponseEntity<UserView> findById(@PathVariable("id") Long id) {
 		
 		UserView user = userService.findById(id);
@@ -61,7 +63,7 @@ public class UserRestController {
 	}
 	
 	// GET ALL USERS
-	@RequestMapping(value="/", method=RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping(value="/")
 	public ResponseEntity<List<UserView>> getAll() {
 		
 		List<UserView> allUsers = userService.findAll();
@@ -79,7 +81,7 @@ public class UserRestController {
 	}
 	
 	// UPDATE USER
-	@RequestMapping(value="/", method=RequestMethod.PUT)
+	@PutMapping(value="/")
 	public ResponseEntity<UserView> update(@RequestBody UserView user) {
 		
 		UserView updatedUser = userService.update(user);
@@ -97,7 +99,7 @@ public class UserRestController {
 	}
 	
 	// DELETE USER
-	@RequestMapping(value="/{id}", method=RequestMethod.DELETE)
+	@DeleteMapping(value="/{id}")
 	public ResponseEntity<Boolean> delete(@PathVariable("id") Long id) {
 		
 		return new ResponseEntity<>(userService.deleteById(id), HttpStatus.OK);

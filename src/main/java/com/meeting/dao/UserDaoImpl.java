@@ -51,6 +51,15 @@ public class UserDaoImpl implements UserDao {
 		return (User) criteria.uniqueResult();
 		
 	}
+
+	@Override
+	public User findByEmail(String email) {
+
+		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(User.class);
+		criteria.add(Restrictions.eq("email", email));
+		return (User) criteria.uniqueResult();
+		
+	}
 	
 	@Override
 	public User findByLogin(String username, String password) {

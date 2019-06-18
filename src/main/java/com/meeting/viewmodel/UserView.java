@@ -22,7 +22,6 @@ public class UserView {
 		this.firstName = user.getFirstName();
 		this.lastName = user.getLastName();
 		this.email = user.getEmail();
-		this.password = user.getPassword();
 		this.meetings = new HashSet<>();
 		
 	}
@@ -32,7 +31,6 @@ public class UserView {
 		this.firstName = user.getFirstName();
 		this.lastName = user.getLastName();
 		this.email = user.getEmail();
-		this.password = user.getPassword();
 		this.meetings = meetings;		
 		
 	}
@@ -42,7 +40,6 @@ public class UserView {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
-		this.password = password;
 		this.meetings = new HashSet<>();
 		
 	}
@@ -52,7 +49,6 @@ public class UserView {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
-		this.password = password;
 		this.meetings = meetings;
 		
 	}

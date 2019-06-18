@@ -15,7 +15,9 @@ public interface UserService {
 	
 	UserView findById(Long id);
 	
+	UserView findByEmail(String email);
+	
 	List<UserView> findAll();
 	
-	boolean login(Login account);
+	UserView login(Login account);
 }
