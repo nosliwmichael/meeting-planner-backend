@@ -22,7 +22,7 @@ public class MeetingServiceImpl implements MeetingService {
 	public MeetingView create(MeetingView meetingView) {
 		
 		// Convert object to be used by DAO
-		Meeting meeting = convertMeetingViewWithUser(meetingView);
+		Meeting meeting = convertMeetingView(meetingView);
 		
 		// Create new meeting
 		Meeting newMeeting = dao.create(meeting);
@@ -31,7 +31,7 @@ public class MeetingServiceImpl implements MeetingService {
 			return null;
 		} else {
 			// Convert object to be sent back to client
-			return convertMeetingWithUser(newMeeting);
+			return convertMeeting(newMeeting);
 		}
 		
 	}
@@ -40,7 +40,7 @@ public class MeetingServiceImpl implements MeetingService {
 	public MeetingView update(MeetingView meetingView) {
 
 		// Convert object to be used by DAO
-		Meeting meeting = convertMeetingViewWithUser(meetingView);
+		Meeting meeting = convertMeetingView(meetingView);
 		
 		// Create update meeting
 		Meeting updatedMeeting = dao.update(meeting);
@@ -49,7 +49,7 @@ public class MeetingServiceImpl implements MeetingService {
 			return null;
 		} else {
 			// Convert object to be sent back to client
-			return convertMeetingWithUser(updatedMeeting);
+			return convertMeeting(updatedMeeting);
 		}
 		
 	}
@@ -71,7 +71,7 @@ public class MeetingServiceImpl implements MeetingService {
 			return null;
 		} else {
 			// Convert object to be sent back to client
-			return convertMeetingWithUser(meeting);
+			return convertMeeting(meeting);
 		}
 
 	}
@@ -88,7 +88,7 @@ public class MeetingServiceImpl implements MeetingService {
 		} else {
 			
 			List<MeetingView> meetingViews = meetings.stream()
-					.map(MeetingServiceImpl::convertMeetingWithUser)
+					.map(MeetingServiceImpl::convertMeeting)
 					.collect(Collectors.toList());
 			
 			return meetingViews;
@@ -109,7 +109,7 @@ public class MeetingServiceImpl implements MeetingService {
 		} else {
 			
 			List<MeetingView> meetingViews = meetings.stream()
-					.map(MeetingServiceImpl::convertMeetingWithUser)
+					.map(MeetingServiceImpl::convertMeeting)
 					.collect(Collectors.toList());
 			
 			return meetingViews;
@@ -118,33 +118,28 @@ public class MeetingServiceImpl implements MeetingService {
 		
 	}
 	
-	
-	// Conversion methods without User
+	// Conversion methods
 	public static Meeting convertMeetingView(MeetingView meetingView) {
 		
 		Meeting meeting = new Meeting(meetingView);
+		meeting.setHostUser(UserServiceImpl.convertUserView(meetingView.getHostUser()));
+		meeting.setUsers(
+				meetingView
+				.getUsers().stream()
+				.map(UserServiceImpl::convertUserView)
+				.collect(Collectors.toSet()));
 		return meeting;
 		
 	}
 	public static MeetingView convertMeeting(Meeting meeting) {
 		
 		MeetingView meetingView = new MeetingView(meeting);
-		return meetingView;
-		
-	}
-	
-	// Conversion methods with User
-	public static Meeting convertMeetingViewWithUser(MeetingView meetingView) {
-		
-		Meeting meeting = new Meeting(meetingView);
-		meeting.setHostUser(UserServiceImpl.convertUserView(meetingView.getHostUser()));
-		return meeting;
-		
-	}
-	public static MeetingView convertMeetingWithUser(Meeting meeting) {
-		
-		MeetingView meetingView = new MeetingView(meeting);
 		meetingView.setHostUser(UserServiceImpl.convertUser(meeting.getHostUser()));
+		meetingView.setUsers(
+				meeting
+				.getUsers().stream()
+				.map(UserServiceImpl::convertUser)
+				.collect(Collectors.toSet()));
 		return meetingView;
 		
 	}

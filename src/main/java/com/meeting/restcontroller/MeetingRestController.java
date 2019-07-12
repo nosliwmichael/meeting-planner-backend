@@ -2,30 +2,36 @@ package com.meeting.restcontroller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.meeting.service.MeetingService;
 import com.meeting.viewmodel.MeetingView;
 
 @RestController
-@CrossOrigin(origins="http://localhost:4200")
 @RequestMapping(value="/meeting")
 public class MeetingRestController {
+	
+	private static final Logger logger = LogManager.getLogger(MeetingRestController.class);
 	
 	@Autowired
 	private MeetingService meetingService;
 	
 	// CREATE NEW MEETING
-	@RequestMapping(value="/", method=RequestMethod.POST, consumes=MediaType.APPLICATION_JSON_VALUE)
+	@PostMapping(value="/")
 	public ResponseEntity<MeetingView> createMeeting(@RequestBody MeetingView meeting) {
 		
 		MeetingView newMeeting = meetingService.create(meeting);
@@ -43,7 +49,7 @@ public class MeetingRestController {
 	}
 	
 	// GET MEETING BY ID
-	@RequestMapping(value="/{id}", method=RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping(value="/{id}")
 	public ResponseEntity<MeetingView> findById(@PathVariable("id") Long id) {
 		
 		MeetingView meeting = meetingService.findById(id);
@@ -61,16 +67,18 @@ public class MeetingRestController {
 	}
 	
 	// GET ALL MEETINGS
-	@RequestMapping(value="/", method=RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<List<MeetingView>> findAllMeetings() {
+	@GetMapping(value="/")
+	public ResponseEntity<List<MeetingView>> findAllMeetings(HttpServletRequest request) {
 		
+		logger.debug("Get all meetings");
+		logger.debug(request.getAttribute("email"));
 		List<MeetingView> allMeetings = meetingService.findAll();
 		return new ResponseEntity<>(allMeetings, HttpStatus.OK);
 		
 	}
 	
 	// GET MEETINGS BY HOST ID
-	@RequestMapping(value="/byHost/{id}", method=RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping(value="/byHost/{id}")
 	public ResponseEntity<List<MeetingView>> findByHost(@PathVariable("id") Long id) {
 		
 		List<MeetingView> hostedMeetings = meetingService.findByHost(id);
@@ -79,7 +87,7 @@ public class MeetingRestController {
 	}	
 	
 	// UPDATE MEETING
-	@RequestMapping(value="/", method=RequestMethod.PUT, produces=MediaType.APPLICATION_JSON_VALUE)
+	@PutMapping(value="/")
 	public ResponseEntity<MeetingView> updateMeeting(@RequestBody MeetingView meeting) {
 		
 		MeetingView updatedMeeting = meetingService.update(meeting);
@@ -88,7 +96,7 @@ public class MeetingRestController {
 	}
 	
 	// DELETE MEETING
-	@RequestMapping(value="/{id}", method=RequestMethod.DELETE)
+	@DeleteMapping(value="/{id}")
 	public ResponseEntity<Boolean> deleteById(@PathVariable ("id") Long id) {
 	
 		return new ResponseEntity<>(meetingService.deleteById(id), HttpStatus.OK);

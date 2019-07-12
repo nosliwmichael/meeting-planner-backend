@@ -5,11 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,30 +17,11 @@ import com.meeting.service.UserService;
 import com.meeting.viewmodel.UserView;
 
 @RestController
-@CrossOrigin(origins="http://localhost:4200")
 @RequestMapping(value="/user")
 public class UserRestController {
 	
 	@Autowired
 	private UserService userService;
-	
-	// CREATE USER
-	@PostMapping(value="/")
-	public ResponseEntity<UserView> create(@RequestBody UserView user) {
-		
-		UserView newUser = userService.create(user);
-		
-		if (newUser == null) {
-			
-			return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
-			
-		} else {
-			
-			return new ResponseEntity<>(newUser, HttpStatus.OK);
-		
-		}
-		
-	}
 	
 	// GET USER BY ID
 	@GetMapping(value="/{id}")
@@ -87,7 +66,6 @@ public class UserRestController {
 		UserView updatedUser = userService.update(user);
 		
 		if (updatedUser == null) {
-			
 			return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
 			
 		} else {

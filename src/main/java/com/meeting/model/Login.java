@@ -26,4 +26,9 @@ public class Login {
 		this.password = password;
 	}
 	
+	@Override
+	public String toString() {
+		return this.email + " " + this.password;
+	}
+	
 }

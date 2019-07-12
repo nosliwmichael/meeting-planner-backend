@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="debug" strict="true" packages="com.meeting">
+	
+	<Properties>
+		<Property name="fileName">C:/log4j2_logs/meeting-planner-backend.log</Property>
+	</Properties>
+	
+	<Appenders>
+		<Appender type="Console" name="STDOUT">
+			<Pattern pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+		</Appender>
+	</Appenders>
+	
+	<Loggers>
+	
+		<Logger name="com.meeting" level="debug" additivity="false">
+			<AppenderRef ref="STDOUT"/>
+		</Logger>
+	
+		<Root level="debug">
+			<AppenderRef ref="Console"/>
+		</Root>
+	</Loggers>
+	
+</Configuration>

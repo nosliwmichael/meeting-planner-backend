@@ -1,6 +1,7 @@
 package com.meeting.viewmodel;
 
 import java.sql.Timestamp;
+import java.util.Set;
 
 import com.meeting.model.Meeting;
 
@@ -8,10 +9,16 @@ public class MeetingView {
 
 	// Properties
 	private Long meeting_id;
+	
 	private String subject;
+
 	private Timestamp time;
+	
 	private String location;
+	
 	private UserView hostUser;
+	
+	private Set<UserView> users;
 		
 	public MeetingView() {}
 	public MeetingView(Meeting meeting) {
@@ -19,7 +26,6 @@ public class MeetingView {
 		this.subject = meeting.getSubject();
 		this.time = meeting.getTime();
 		this.location = meeting.getLocation();
-		this.hostUser = new UserView();
 	}
 	public MeetingView(Meeting meeting, UserView user) {
 		this.meeting_id = meeting.getId();
@@ -77,6 +83,13 @@ public class MeetingView {
 	}
 	public void setHostUser(UserView user) {
 		this.hostUser = user;
+	}
+
+	public Set<UserView> getUsers() {
+		return this.users;
+	}
+	public void setUsers(Set<UserView> users) {
+		this.users = users;
 	}
 	
 	@Override

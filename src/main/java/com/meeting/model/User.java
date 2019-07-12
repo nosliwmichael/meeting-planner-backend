@@ -1,20 +1,19 @@
 package com.meeting.model;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.DynamicUpdate;
 
 import com.meeting.viewmodel.UserView;
 
 @Entity
-@Table(name="user") // Change table name
+@Table(name="user") // TODO Change table name. User is a reserved word
+@DynamicUpdate
 public class User {
 	
 	// Properties
@@ -35,10 +34,6 @@ public class User {
 	@Column(name = "password", nullable = false)
 	private String password;
 
-
-	@OneToMany(mappedBy="hostUser")
-	private Set<Meeting> meetings;
-
 	// Constructor
 	public User() {}
 	public User(UserView userView) {
@@ -48,17 +43,6 @@ public class User {
 		this.lastName = userView.getLastName();
 		this.email = userView.getEmail();
 		this.password = userView.getPassword();
-		this.meetings = new HashSet<>();
-		
-	}
-	public User(UserView userView, Set<Meeting> meetings) {
-		
-		this.userId = userView.getId();
-		this.firstName = userView.getFirstName();
-		this.lastName = userView.getLastName();
-		this.email = userView.getEmail();
-		this.password = userView.getPassword();
-		this.meetings = meetings;
 		
 	}
 	public User(Long id, String firstName, String lastName, String email, String password) {
@@ -67,15 +51,6 @@ public class User {
 		this.lastName = lastName;
 		this.email = email;
 		this.password = password;
-		this.meetings = new HashSet<>();
-	}
-	public User(Long id, String firstName, String lastName, String email, String password, Set<Meeting> meetings) {
-		this.userId = id;
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.email = email;
-		this.password = password;
-		this.meetings = meetings;
 	}
 	
 	// Getters & Setters
@@ -112,13 +87,6 @@ public class User {
 	}
 	public void setPassword(String password) {
 		this.password = password;
-	}
-	
-	public Set<Meeting> getMeetings() {
-		return this.meetings;
-	}
-	public void setMeetings(Set<Meeting> meetings) {
-		this.meetings = meetings;
 	}
 	
 	@Override

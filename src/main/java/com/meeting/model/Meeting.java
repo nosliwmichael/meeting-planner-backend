@@ -1,6 +1,8 @@
 package com.meeting.model;
 
 import java.sql.Timestamp;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,8 +10,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import com.meeting.viewmodel.MeetingView;
 
@@ -34,8 +41,17 @@ public class Meeting {
 	private String location;
 	
 	@ManyToOne
+	@OnDelete(action = OnDeleteAction.CASCADE)
 	@JoinColumn(name = "host_id", nullable = false)
 	private User hostUser;
+	
+	@ManyToMany
+	@JoinTable(
+		name="user_meeting", 
+		joinColumns = { @JoinColumn(name = "meeting_id") }, 
+		inverseJoinColumns = { @JoinColumn(name = "user_id") }
+	)
+	Set<User> users = new HashSet<>();
 	
 	// Constructors
 	public Meeting() {}
@@ -102,6 +118,13 @@ public class Meeting {
 	}
 	public void setHostUser(User user) {
 		this.hostUser = user;
+	}
+
+	public Set<User> getUsers() {
+		return users;
+	}
+	public void setUsers(Set<User> users) {
+		this.users = users;
 	}
 	
 	@Override

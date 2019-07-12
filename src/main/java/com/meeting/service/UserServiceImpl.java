@@ -26,9 +26,9 @@ public class UserServiceImpl implements UserService {
 		
 		// User is valid and does not already exist
 		if (ValidateUser.validateNewUser(userView) && !userExists(userView)) {
-			
+						
 			// Convert from View Model to Entity Model
-			User user = convertUserViewWithMeetings(userView);
+			User user = convertUserView(userView);
 		
 			// Create new user
 			User newUser = dao.create(user);
@@ -36,29 +36,23 @@ public class UserServiceImpl implements UserService {
 			if (ValidateUser.validateNewUser(newUser)) {
 
 				// Convert from Entity Model to View Model
-				return convertUserWithMeetings(newUser);
-				
-			} else {
-				
-				return null;
+				return convertUser(newUser);
 				
 			}
 			
-		} else {
-			
-			return null;
-			
 		}
+
+		return null;
 		
 	}
 
 	@Override
 	public UserView update(UserView userView) {
-
+		
 		if (ValidateUser.validateUser(userView)) {
 			
 			// Convert from View Model to Entity Model
-			User user = convertUserViewWithMeetings(userView);
+			User user = convertUserView(userView);
 			
 			// Update user
 			User updatedUser = dao.update(user);
@@ -66,19 +60,13 @@ public class UserServiceImpl implements UserService {
 			if (ValidateUser.validateUser(updatedUser)) {
 
 				// Convert from Entity Model to View Model
-				return convertUserWithMeetings(updatedUser);
-				
-			} else {
-				
-				return null;
+				return convertUser(updatedUser);
 				
 			}
 		
-		} else {
-			
-			return null;
-			
 		}
+		
+		return null;
 		
 	}
 
@@ -95,14 +83,13 @@ public class UserServiceImpl implements UserService {
 		// Find user
 		User user = dao.findById(id);
 		
-		if (user == null) {
+		if (ValidateUser.validateUser(user)) {
 			
-			return null;
+			return convertUser(user);
 			
 		} else {
 			
-			// Convert from Entity Model to View Model
-			return convertUserWithMeetings(user);
+			return null;
 			
 		}
 		
@@ -114,14 +101,13 @@ public class UserServiceImpl implements UserService {
 		// Find user
 		User user = dao.findByEmail(email);
 		
-		if (user == null) {
+		if (ValidateUser.validateUser(user)) {
 			
-			return null;
+			return convertUser(user);
 			
 		} else {
 			
-			// Convert from Entity Model to View Model
-			return convertUserWithMeetings(user);
+			return null;
 			
 		}
 		
@@ -141,7 +127,7 @@ public class UserServiceImpl implements UserService {
 			List<UserView> userViews = new ArrayList<>();
 			
 			for (User user: users) {
-				UserView userView = convertUserWithMeetings(user);
+				UserView userView = convertUser(user);
 				userViews.add(userView);
 			}
 			
@@ -156,10 +142,13 @@ public class UserServiceImpl implements UserService {
 		
 		User user = dao.findByLogin(account.getEmail(), account.getPassword());
 		
-		if (user != null) {
+		if (ValidateUser.validateUser(user)) {
 			return convertUser(user);
+			
 		} else {
+			
 			return null;
+			
 		}
 		
 	}
@@ -167,7 +156,7 @@ public class UserServiceImpl implements UserService {
 	private boolean userExists(UserView user) {
 		
 		UserView findUser = findByEmail(user.getEmail());
-		return findUser == null;
+		return findUser != null;
 		
 	}
 
@@ -181,33 +170,6 @@ public class UserServiceImpl implements UserService {
 	public static UserView convertUser(User user) {
 		
 		return new UserView(user);
-		
-	}
-	
-	// Conversion methods with meetings
-	public static User convertUserViewWithMeetings(UserView userView) {
-		
-		User user = new User(userView);
-		user.setMeetings( userView
-							.getMeetings()
-							.stream()
-							.map(MeetingServiceImpl::convertMeetingView)
-							.collect(Collectors.toSet())
-						);
-		return user;
-		
-	}
-	public static UserView convertUserWithMeetings(User user) {
-		
-		UserView userView = new UserView(user);
-		userView.setMeetings( user
-								.getMeetings()
-								.stream()
-								.map(MeetingServiceImpl::convertMeeting)
-								.collect(Collectors.toSet())
-							);
-		userView.setPassword(null);
-		return userView;
 		
 	}
 	

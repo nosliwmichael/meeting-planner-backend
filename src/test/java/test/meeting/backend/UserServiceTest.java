@@ -1,11 +1,7 @@
 package test.meeting.backend;
 
-import java.sql.Timestamp;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -17,11 +13,8 @@ import org.testng.annotations.Test;
 
 import com.meeting.dao.UserDao;
 import com.meeting.model.Login;
-import com.meeting.model.Meeting;
 import com.meeting.model.User;
-import com.meeting.service.MeetingServiceImpl;
 import com.meeting.service.UserServiceImpl;
-import com.meeting.viewmodel.MeetingView;
 import com.meeting.viewmodel.UserView;
 
 public class UserServiceTest {
@@ -40,19 +33,12 @@ public class UserServiceTest {
 		
 		MockitoAnnotations.initMocks(this);
 		
-		Set<MeetingView> meetingViews = new HashSet<>();
-		meetingViews.add(new MeetingView(1L, "Task 1 Code Review", new Timestamp(1558587888), "Conference Room"));
-		meetingViews.add(new MeetingView(2L, "Task 1 Demo", new Timestamp(1558699488), "Conference Room"));
-		meetingViews.add(new MeetingView(3L, "Task 2 Code Review", new Timestamp(1558785888), "Conference Room"));
-		
 		userViews.add(new UserView(1L, "Michael", "Wilson", "michael@email.com", "password"));
-		userViews.add(new UserView(1L, "George", "Washington", "george@email.com", "password", meetingViews));
+		userViews.add(new UserView(1L, "George", "Washington", "george@email.com", "password"));
 		userViews.add(new UserView(1L, "Johnny", "Appleseed", "appleseed@email.com", "password"));
 		
-		Set<Meeting> meetings = meetingViews.stream().map(MeetingServiceImpl::convertMeetingView).collect(Collectors.toSet());
-		
 		users.add(new User(userViews.get(0)));
-		users.add(new User(userViews.get(1), meetings));
+		users.add(new User(userViews.get(1)));
 		users.add(new User(userViews.get(2)));
 		
 	}

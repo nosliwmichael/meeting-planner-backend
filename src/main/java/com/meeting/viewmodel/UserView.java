@@ -1,8 +1,5 @@
 package com.meeting.viewmodel;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import com.meeting.model.User;
 
 public class UserView {
@@ -13,7 +10,6 @@ public class UserView {
 	private String lastName;
 	private String email;
 	private String password;
-	private Set<MeetingView> meetings;
 	
 	public UserView() {}
 	public UserView(User user) {
@@ -22,16 +18,6 @@ public class UserView {
 		this.firstName = user.getFirstName();
 		this.lastName = user.getLastName();
 		this.email = user.getEmail();
-		this.meetings = new HashSet<>();
-		
-	}
-	public UserView(User user, Set<MeetingView> meetings) {
-		
-		this.id = user.getId();
-		this.firstName = user.getFirstName();
-		this.lastName = user.getLastName();
-		this.email = user.getEmail();
-		this.meetings = meetings;		
 		
 	}
 	public UserView(Long id, String firstName, String lastName, String email, String password) {
@@ -40,17 +26,7 @@ public class UserView {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
-		this.meetings = new HashSet<>();
-		
-	}
-	public UserView(Long id, String firstName, String lastName, String email, String password, Set<MeetingView> meetings) {
-		
-		this.id = id;
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.email = email;
-		this.meetings = meetings;
-		
+	
 	}
 
 	// Getters & Setters
@@ -87,13 +63,6 @@ public class UserView {
 	}
 	public void setPassword(String password) {
 		this.password = password;
-	}
-
-	public Set<MeetingView> getMeetings() {
-		return this.meetings;
-	}
-	public void setMeetings(Set<MeetingView> meetings) {
-		this.meetings = meetings;
 	}
 	
 	@Override
